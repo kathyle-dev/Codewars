@@ -1,13 +1,24 @@
-// You need to write regex that will validate a password to make sure it meets the following criteria:
+// Description:
 //
-//     At least six characters long
-//     contains a lowercase letter
-//     contains an uppercase letter
-//     contains a number
+// You are going to be given a word. Your job is to return the middle character of the word. If the word's length is odd, return the middle character. If the word's length is even, return the middle 2 characters.
 //
-// Valid passwords will only be alphanumeric characters.
-PREP --
+// #Examples:
+//
+// Kata.getMiddle("test") should return "es"
+//
+// Kata.getMiddle("testing") should return "t"
+//
+// Kata.getMiddle("middle") should return "dd"
+//
+// Kata.getMiddle("A") should return "A"
 
-function validate(password) {
-  return /^[A-Za-z0-9]{6,}/.test(password);
+function getMiddle(s)
+{
+  if(s.length==1){
+    return s
+  }else if(s.length%2!=0){
+    return s.charAt(s.length/2)
+  }else{
+    return s.charAt((s.length/2)-1) + s.charAt(s.length/2)
+  }
 }
