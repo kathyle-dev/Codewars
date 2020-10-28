@@ -1,0 +1,42 @@
+Smallest Unused ID
+
+https://www.codewars.com/kata/55eea63119278d571d00006a
+
+Hey awesome programmer!
+
+You've got much data to manage and of course you use zero-based and non-negative ID's to make each data item unique!
+
+Therefore you need a method, which returns the smallest unused ID for your next new data item...
+
+Note: The given array of used IDs may be unsorted. For test reasons there may be duplicate IDs, but you don't have to find or remove them!
+
+//My Soultion:
+function nextId(ids){
+  let filteredIds= []
+  ids.sort((a,b)=> a-b).filter(num =>{
+    if(filteredIds.includes(num)==false){
+      filteredIds.push(num)
+    }
+  })
+  for(var i =0; i<filteredIds.length; i++){
+    let currentEl = filteredIds[i] +1
+    let nextEl = filteredIds[i+1]
+    if(filteredIds.includes(0)== false){
+      return 0
+    }else if(currentEl == nextEl){
+      continue
+    }else{
+      return currentEl
+      break
+    }
+  }
+  return (filteredIds[filteredIds.length-1] +1)
+}
+
+//Best Practice: using While Loop
+
+function nextId(ids){
+ var x = 0;
+ while (ids.includes(x)) x++;
+ return x;
+}
