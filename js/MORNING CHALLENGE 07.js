@@ -1,27 +1,33 @@
-// ARRAY COMBINATIONS
-// https://www.codewars.com/kata/59e66e48fc3c499ec5000103/javascript
+// Remove consecutive duplicate words
+// https://www.codewars.com/kata/5b39e91ee7a2c103300018b3
 //
-// In this Kata, you will be given an array of arrays and your task will be to return the number of unique arrays that can be formed by picking exactly one element from each subarray.
+// Description:
 //
-// For example: solve([[1,2],[4],[5,6]]) = 4, because it results in only 4 possiblites. They are [1,4,5],[1,4,6],[2,4,5],[2,4,6].
+// Your task is to remove all consecutive duplicate words from string, leaving only first words entries. For example:
 //
-// Make sure that you don't count duplicates; for example solve([[1,2],[4,4],[5,6,6]]) = 4, since the extra outcomes are just duplicates.
+// "alpha beta beta gamma gamma gamma delta alpha beta beta gamma gamma gamma delta"
 //
-// See test cases for more examples.
+// --> "alpha beta gamma delta alpha beta gamma delta"
 
 
 //MY SOLUTION:
-function solve(arr) {
-  let numOfUnique = 1
-  arr.forEach(array => numOfUnique *= [...new Set(array)].length)
-  return numOfUnique
-};
-
-//Refactored One liner
-function solve(arr) {
-  return arr.map(array => [...new Set(array)]).reduce((a,c)=> a*c.length ,1)
-};
+const removeConsecutiveDuplicates = function remove(s){
+     let returnS= []
+     let splitS= s.split(" ")
+     let index =0;
+     for (var i=0; i< splitS.length; i++){
+       if(returnS.length ==0){
+         returnS.push(splitS[i])
+        }else if(returnS[index]== splitS[i]){
+          continue
+        }else{
+          returnS.push(splitS[i])
+          index++
+        }
+     }
+    return returnS.join(" ")
+}
 
 //Best Pracitice
-// use size built in property so we don't have to do another O(n) with [... new Set]
-const solve = a => a.map( v => new Set(v).size ).reduce( (v,w) => v*w , 1 )
+// FILTER returns element if element is not the same as the previous one
+const removeConsecutiveDuplicates = s => s.split(" ").filter((x,i,arr) => x!=arr[i-1]).join(" ")
